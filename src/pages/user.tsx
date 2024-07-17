@@ -1,24 +1,72 @@
+// src/pages/user.tsx
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { GitHubUser, GitHubRepo } from '@/types';
+import Image from 'next/image';
+import NotFound from '@/components/NotFound';
 
 const UserPage = () => {
   const router = useRouter();
   const { username } = router.query;
   const [userData, setUserData] = useState<GitHubUser | null>(null);
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
+  const [notFound, setNotFound] = useState(false);
+  const GITHUB_TOKEN = 'TOKEN';
 
   useEffect(() => {
     if (username) {
-      fetch(`https://api.github.com/users/${username}`)
-        .then((res) => res.json())
-        .then((data: GitHubUser) => setUserData(data));
+      fetch(`https://api.github.com/users/${username}`, {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return res.json();
+        })
+        .then((data: GitHubUser) => {
+          if ('message' in data) {
+            setNotFound(true);
+            setUserData(null);
+          } else {
+            setNotFound(false);
+            setUserData(data);
+          }
+        })
+        .catch((error) => {
+          setNotFound(true);
+          setUserData(null);
+        });
 
-      fetch(`https://api.github.com/users/${username}/repos`)
-        .then((res) => res.json())
-        .then((data: GitHubRepo[]) => setRepos(data));
+      fetch(`https://api.github.com/users/${username}/repos`, {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return res.json();
+        })
+        .then((data: GitHubRepo[]) => {
+          if (Array.isArray(data)) {
+            setRepos(data);
+          } else {
+            setRepos([]);
+          }
+        })
+        .catch((error) => {
+          setRepos([]);
+        });
     }
   }, [username]);
+
+  if (notFound) {
+    return <NotFound username={username as string} />;
+  }
 
   if (!userData) {
     return <div>Carregando...</div>;

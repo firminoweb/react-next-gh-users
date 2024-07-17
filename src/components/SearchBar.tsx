@@ -15,21 +15,41 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
-    <div className="flex items-center">
+    <div className="m-5 flex items-center h-10 rounded-lg border border-gray-200 focus-within:shadow-lg bg-white overflow-hidden w-[668px]">
       <input
+        className="peer h-full w-full outline-none text-sm text-gray-700 px-2"
         type="text"
-        className="border p-2 rounded-md"
+        id="search"
         placeholder="Buscar usuário"
-        value={username}
         onChange={(e) => setUsername(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
-      <button
-        className="ml-2 p-2 bg-blue-500 text-white rounded-md"
+      <div
+        className="grid place-items-center h-full w-12 text-gray-300 cursor-pointer"
         onClick={handleSearch}
       >
-        Buscar
-      </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-600"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          ></path>
+        </svg>
+      </div>
     </div>
   );
 };

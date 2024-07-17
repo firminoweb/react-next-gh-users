@@ -1,4 +1,3 @@
-// Definição da interface para GitHubUser
 export interface GitHubUser {
   login: string;
   id: number;
@@ -17,6 +16,7 @@ export interface GitHubUser {
   following: number;
   created_at: string;
   updated_at: string;
+  message?: string;
 }
 
 export interface GitHubRepo {

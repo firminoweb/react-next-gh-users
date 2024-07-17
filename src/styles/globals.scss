@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,17 +19,34 @@
 }
 
 body {
+  font-family: 'Poppins', sans-serif;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(255 255 255);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .navbar {
+    @apply flex justify-between items-center border-b border-gray-200;
+  }
+  .navbar-container {
+    @apply container mx-auto flex justify-between w-full max-w-full;
+  }
+  .navbar-link {
+    @apply text-white text-xl;
+  }
+  .searchbar-container {
+    @apply m-4 flex items-center;
+  }
+  .searchbar-input {
+    @apply border p-2 rounded-md;
+  }
+  .searchbar-button {
+    @apply ml-2 p-2 bg-blue-500 text-white rounded-md;
+  }
+  .favorites-button {
+    @apply bg-[#32C0C6] text-white text-sm p-5 flex items-center;
   }
 }
