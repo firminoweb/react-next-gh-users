@@ -1,9 +1,9 @@
-// src/pages/user.tsx
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { GitHubUser, GitHubRepo } from '@/types';
 import Image from 'next/image';
 import NotFound from '@/components/NotFound';
+import RepositoryList from '@/components/RepositoryList';
 
 const UserPage = () => {
   const router = useRouter();
@@ -11,7 +11,15 @@ const UserPage = () => {
   const [userData, setUserData] = useState<GitHubUser | null>(null);
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [notFound, setNotFound] = useState(false);
-  const GITHUB_TOKEN = 'TOKEN';
+  const [favorites, setFavorites] = useState<GitHubRepo[]>([]);
+  const GITHUB_TOKEN = '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';
+
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem('favorites');
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
 
   useEffect(() => {
     if (username) {
@@ -64,6 +72,21 @@ const UserPage = () => {
     }
   }, [username]);
 
+  const toggleFavorite = (repo: GitHubRepo) => {
+    let updatedFavorites;
+    if (favorites.some((fav) => fav.id === repo.id)) {
+      updatedFavorites = favorites.filter((fav) => fav.id !== repo.id);
+    } else {
+      updatedFavorites = [...favorites, repo];
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
+
+  const isFavorite = (repo: GitHubRepo) => {
+    return favorites.some((fav) => fav.id === repo.id);
+  };
+
   if (notFound) {
     return <NotFound username={username as string} />;
   }
@@ -73,19 +96,39 @@ const UserPage = () => {
   }
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-bold">{userData.name}</h1>
-      <p>{userData.bio}</p>
-      <h2 className="text-xl font-semibold mt-4">Repositórios</h2>
-      <ul>
-        {repos.map((repo) => (
-          <li key={repo.id}>
-            <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-              {repo.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+    <div className="container mx-auto mt-8 flex">
+      <div className="w-2/6 p-4">
+        <div className="border rounded-lg p-8 text-center">
+          <Image
+            className="rounded-full mx-auto"
+            src={userData.avatar_url}
+            alt={userData.name}
+            width={200}
+            height={200}
+          />
+          <h2 className="mt-4 text-xl font-semibold text-gray-600">
+            {userData.name}
+          </h2>
+          <a
+            href={`https://github.com/${userData.login}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-4 text-sm text-gray-600"
+          >
+            @{userData.login}
+          </a>
+          <p className="text-sm text-gray-600">{userData.bio}</p>
+        </div>
+      </div>
+      <div className="w-4/6 p-4 pb-12">
+        <h2 className="text-2xl font-bold text-[#32C0C6]">Repositórios</h2>
+        <RepositoryList
+          repos={repos}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+          isFavorite={isFavorite}
+        />
+      </div>
     </div>
   );
 };
