@@ -12,7 +12,7 @@ const UserPage = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [notFound, setNotFound] = useState(false);
   const [favorites, setFavorites] = useState<GitHubRepo[]>([]);
-  const GITHUB_TOKEN = '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';
+  const GITHUB_TOKEN = 'TOKEN';
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favorites');
