@@ -34,6 +34,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
       <div
         className="grid place-items-center h-full w-12 text-gray-300 cursor-pointer"
         onClick={handleSearch}
+        role="button"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
