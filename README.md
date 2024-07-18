@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Teste Casar.com
 
-## Getting Started
+Este é um projeto Next.js que permite procurar usuários do GitHub e marcar repositórios como favoritos. Ele utiliza **React**, **TypeScript**, **Next,js**, **TailwindCSS** e várias outras ferramentas modernas para desenvolvimento e testes como o **Husky** e o **Commitizen**.
 
-First, run the development server:
+## Funcionalidades
+- Buscar usuários do GitHub pelo nome ou nome de usuário
+- Exibir repositórios de um usuário específico
+- Marcar e desmarcar repositórios como favoritos
+- Persistência de favoritos utilizando localStorage
+- Interface estilizada com TailwindCSS
+- Testes unitários abrangentes com Jest e Testing Library
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Instalação
+
+### 1. Clone o repositório:
+
+```
+git clone https://github.com/seu-usuario/test-casar-com.git
+cd test-casar-com
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Usando npm: `npm install`
+- Usando yarn: `yarn install`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Configuração do Token do GitHub
 
-## Learn More
+Para acessar a API do GitHub, você precisa configurar um token de acesso. Altere o arquivo `users.tsx` e adicione o token da seguinte forma:
 
-To learn more about Next.js, take a look at the following resources:
+```
+  // Antes
+  const GITHUB_TOKEN = 'TOKEN';
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  // E depois
+  const GITHUB_TOKEN = 'ghp_6luxB........3rjdV0';
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Execução
 
-## Deploy on Vercel
+Para iniciar o projeto, você pode usar os seguintes comandos:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Ambiente de desenvolvimento:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Usando NPM: `npm run dev`
+- Usando Yarn: `yarn dev`
+
+### Construir o projeto para produção:
+
+- Usando NPM: `npm run build`
+- Usando Yarn: `yarn build`
+
+### Iniciar o serviço em produção:
+
+- Usando NPM: `npm start`
+- Usando Yarn: `yarn start`
+
+## Testes Unitários
+
+O projeto utiliza Jest para testes unitários. Você pode rodar os testes com cobertura de código utilizando os seguintes comandos:
+
+- Usando NPM: `npm test`
+- Usando Yarn: `yarn test`
+
+## Outros Scripts Úteis
+
+### Linting
+
+- Usando NPM: `npm run lint`
+- Usando Yarn: `yarn lint`
+
+### Formatação de código:
+
+- Usando NPM: `npm run format`
+- Usando Yarn: `yarn format`
+
+### Preparar husky para commits:
+
+- Usando NPM: `npm run prepare`
+- Usando Yarn: `yarn prepare`
+

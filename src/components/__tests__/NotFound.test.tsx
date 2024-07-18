@@ -1,9 +1,8 @@
-// src/components/__tests__/NotFound.test.tsx
 import { render, screen } from '@testing-library/react';
 import NotFound from '../NotFound';
 
 describe('NotFound', () => {
-  it('renders the NotFound component with the correct username', () => {
+  it('renderiza o componente NotFound com o nome de usuário correto', () => {
     const username = 'nonexistentuser';
     render(<NotFound username={username} />);
 

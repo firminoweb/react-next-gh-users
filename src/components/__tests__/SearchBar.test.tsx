@@ -2,13 +2,13 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import SearchBar from '../SearchBar';
 
 describe('SearchBar', () => {
-  it('renders correctly', () => {
+  it('renderiza o componente', () => {
     render(<SearchBar onSearch={() => {}} />);
     const inputElement = screen.getByPlaceholderText('Buscar usuário');
     expect(inputElement).toBeInTheDocument();
   });
 
-  it('calls onSearch when the search button is clicked', () => {
+  it('chama onSearch quando o botão de busca é clicado', () => {
     const mockOnSearch = jest.fn();
     render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -21,7 +21,7 @@ describe('SearchBar', () => {
     expect(mockOnSearch).toHaveBeenCalledWith('testuser');
   });
 
-  it('calls onSearch when Enter key is pressed', () => {
+  it('chama onSearch quando a tecla Enter é pressionada', () => {
     const mockOnSearch = jest.fn();
     render(<SearchBar onSearch={mockOnSearch} />);
 
@@ -32,7 +32,7 @@ describe('SearchBar', () => {
     expect(mockOnSearch).toHaveBeenCalledWith('testuser');
   });
 
-  it('does not call onSearch if input is empty', () => {
+  it('não chama onSearch se o campo de entrada estiver vazio', () => {
     const mockOnSearch = jest.fn();
     render(<SearchBar onSearch={mockOnSearch} />);
 

@@ -62,7 +62,7 @@ const mockToggleFavorite = jest.fn();
 const mockIsFavorite = jest.fn();
 
 describe('RepositoryList', () => {
-  it('renders the list of repositories correctly', () => {
+  it('renderiza a lista de repositórios corretamente', () => {
     render(
       <RepositoryList
         repos={mockRepos}
@@ -90,7 +90,7 @@ describe('RepositoryList', () => {
     });
   });
 
-  it('calls toggleFavorite when the favorite button is clicked', () => {
+  it('chama toggleFavorite quando o botão de favorito é clicado', () => {
     render(
       <RepositoryList
         repos={mockRepos}
@@ -109,7 +109,7 @@ describe('RepositoryList', () => {
     expect(mockToggleFavorite).toHaveBeenCalledWith(mockRepos[1]);
   });
 
-  it('displays the correct favorite icon based on isFavorite', () => {
+  it('exibe o ícone de favorito correto com base em isFavorite', () => {
     mockIsFavorite.mockImplementation((repo) => repo.id === 1);
 
     render(
