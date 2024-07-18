@@ -4,6 +4,7 @@ import { GitHubUser, GitHubRepo } from '@/types';
 import Image from 'next/image';
 import NotFound from '@/components/NotFound';
 import RepositoryList from '@/components/RepositoryList';
+import { GITHUB_TOKEN } from '@/configs';
 
 const UserPage = () => {
   const router = useRouter();
@@ -12,7 +13,6 @@ const UserPage = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [notFound, setNotFound] = useState(false);
   const [favorites, setFavorites] = useState<GitHubRepo[]>([]);
-  const GITHUB_TOKEN = 'TOKEN';
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem('favorites');

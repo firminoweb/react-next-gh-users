@@ -26,14 +26,14 @@ cd test-casar-com
 
 ## Configuração do Token do GitHub
 
-Para acessar a API do GitHub, você precisa configurar um token de acesso. Altere o arquivo `users.tsx` e adicione o token da seguinte forma:
+Para acessar a API do GitHub, você precisa configurar um token de acesso. Altere o arquivo `configs/index.ts` e adicione o token da seguinte forma:
 
 ```
-  // Antes
-  const GITHUB_TOKEN = 'TOKEN';
+  // Está assim por padrão para rodar em PROD
+  export const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
-  // E depois
-  const GITHUB_TOKEN = 'ghp_6luxB........3rjdV0';
+  // E para rodar localhost insira o token manualmente
+  export const GITHUB_TOKEN = 'ghp_6luxB........3rjdV0';
 ```
 
 ## Execução
