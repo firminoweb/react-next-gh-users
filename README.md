@@ -1,6 +1,6 @@
-# Teste Casar.com
+# React + Next.js | gh-users
 
-Este é um projeto Next.js que permite procurar usuários do GitHub e marcar repositórios como favoritos. Ele utiliza **React**, **TypeScript**, **Next,js**, **TailwindCSS** e várias outras ferramentas modernas para desenvolvimento e testes como o **Husky** e o **Commitizen**.
+Este é um projeto React + Next.js que permite procurar usuários do GitHub e marcar repositórios como favoritos. Ele utiliza **React**, **TypeScript**, **Next,js**, **TailwindCSS** e várias outras ferramentas modernas para desenvolvimento e testes como o **Husky** e o **Commitizen**.
 
 ## Funcionalidades
 - Buscar usuários do GitHub pelo nome ou nome de usuário
@@ -15,8 +15,8 @@ Este é um projeto Next.js que permite procurar usuários do GitHub e marcar rep
 ### 1. Clone o repositório:
 
 ```
-git clone https://github.com/seu-usuario/test-casar-com.git
-cd test-casar-com
+git clone https://github.com/firminoweb/react-next-gh-users.git
+cd react-next-gh-users
 ```
 
 ### 2. Instale as dependências:
